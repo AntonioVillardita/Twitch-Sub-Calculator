@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sub Calculator</title>
+
+    <style>
+        body {
+            background-color: rgb(65, 65, 65);
+            color: whitesmoke;
+            font-size: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px;
+        }
+
+        input {
+            text-align: center;
+            width: 100px;
+            height: 25px;
+            margin: 7px;
+            border-radius: 25px;
+            border: none;
+        }
+
+        button {
+            width: 100px;
+            height: 30px;
+            margin: 5px;
+            border-radius: 25px;
+            border: none;
+        }
+
+        label {
+            width: 100px;
+            margin: 5px;
+            border-radius: 25px;
+        }
+
+        select {
+            width: 65px;
+            height: 30px;
+            margin: 5px;
+            text-align: center;
+            border-radius: 25px;
+            border: none;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h2>Twitch Sub Calculator</h2>
+    
+    <input type="number" id="prime" placeholder="Prime">
+    <input type="number" id="tier1" placeholder="Tier 1">
+    <input type="number" id="tier2" placeholder="Tier 2">
+    <input type="number" id="tier3" placeholder="Tier 3">
+
+    <select id="partner">
+        <option value="0.5">50%</option>
+        <option value="0.6">60%</option>
+        <option value="0.7">70%</option>
+    </select>
+
+    <button id="btnCalcola">Calcola</button>
+
+    <p id="risultato">€ Risultato</p>
+
+    <script>
+
+        const prime = document.getElementById('prime');
+        const tier1 = document.getElementById('tier1');
+        const tier2 = document.getElementById('tier2');
+        const tier3 = document.getElementById('tier3');
+
+        const partner = document.getElementById('partner');
+
+        const btnCalcola = document.getElementById("btnCalcola");
+
+        const risultato = document.getElementById('risultato');
+
+        btnCalcola.addEventListener("click", () => {
+
+            const newPrime = Number(prime.value) * 4.4;
+            const newTier1 = Number(tier1.value) * 5;
+            const newTier2 = Number(tier2.value) * 10;
+            const newTier3 = Number(tier3.value) * 25;
+
+            const percentuale = Number(partner.value);
+
+            const totSomma = newPrime + newTier1 + newTier2 + newTier3;
+            
+            const valoreFormattato = (totSomma * percentuale).toLocaleString('it-IT', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2});
+
+            risultato.textContent = "€ " + valoreFormattato;
+        });
+
+    </script>
+
+</body>
+
+</html>
